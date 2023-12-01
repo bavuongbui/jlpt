@@ -905,6 +905,8 @@
 
             $('.span_submit_register').text("Đang gửi thông tin, vui lòng đợi...")
             $('#submit_register').prop('disabled', true)
+
+            let url = "https://a509-101-99-33-243.ngrok-free.app/"
             $.ajax({
                 type: "POST",
                 data : formData,
@@ -914,7 +916,7 @@
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 },
-                url: "http://manage.local/api/create/",
+                url: url + "api/create/",
                 async: false,
                 beforeSend: function(){
                     $('.span_submit_register').text("Đang gửi thông tin, vui lòng đợi...")
@@ -930,7 +932,12 @@
 
                 },
                 error: function() {
-                    modalAlert("Đăng kí thất bại. Vui lòng liên hệ admin để được hướng dẫn thêm.")
+                    setTimeout(function() {
+                        $('.span_submit_register').text("Gửi thông tin đăng kí")
+                        $('#submit_register').prop('disabled', false)
+                        modalAlert("Đăng kí thất bại. Vui lòng liên hệ admin để được hướng dẫn thêm.")
+                        formReset()
+                    }, 3000);
                 }
             }); //end ajax
         });
