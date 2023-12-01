@@ -73,7 +73,7 @@
     margin-right: 35px;
 }
 .sticky-header .main-menu .navigation> li> a {
-    padding: 33px 0px 37px;
+    padding: 10px 0px 0px;
 }
 .sticky-header .main-menu .navigation>li:hover>a,
 .sticky-header .main-menu .navigation>li.current>a{
@@ -344,7 +344,7 @@
 .main-menu .navigation>li>a {
     position: relative;
     display: block;
-    padding: 40px 0px 40px;
+    padding: 10px 0px 0px;
     color: #051320;
     font-size: 18px;
     line-height: 30px;
