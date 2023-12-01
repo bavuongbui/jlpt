@@ -686,17 +686,6 @@ if($("#contact-form").length){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 //Search Popup
 if($('#search-popup').length){
     //Show Popup
@@ -704,6 +693,7 @@ if($('#search-popup').length){
         $('#btn-search').prop('disabled',true)
         $('.btn-txt').text("Đang kiểm tra.")
         let phone = $('#search_phone').val()
+        
         // let url = "https://a509-101-99-33-243.ngrok-free.app/"
         let url = "http://manage.local/"
             $.ajax({
@@ -725,7 +715,6 @@ if($('#search-popup').length){
                         $('#search-popup').addClass('popup-visible');
                         $('#search-results').html(data)
                     }, 3000);
-
                 },
                 error: function() {
                     $('#search-popup').removeClass('popup-visible');
