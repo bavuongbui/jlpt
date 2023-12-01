@@ -701,35 +701,46 @@ if($("#contact-form").length){
 if($('#search-popup').length){
     //Show Popup
     $('.search-toggler').on('click', function() {
-        let url = "https://a509-101-99-33-243.ngrok-free.app/"
+        $('#btn-search').prop('disabled',true)
+        $('.btn-txt').text("Đang kiểm tra.")
+        let phone = $('#search_phone').val()
+        // let url = "https://a509-101-99-33-243.ngrok-free.app/"
+        let url = "http://manage.local/"
             $.ajax({
                 type: "POST",
-                processData: false,
-                contentType: false,
+                data: { phone: phone},
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 },
                 url: url + "api/search/",
                 async: false,
                 beforeSend: function(){
-                   
+                   $('#btn-search').prop('disabled',true)
+                   $('.btn-txt').text("Đang kiểm tra.")
                 },
-                success: function() {
+                success: function(data) {
                     setTimeout(function() {
+                        $('#btn-search').prop('disabled',false)
+                        $('.btn-txt').text("Kiểm tra.")
                         $('#search-popup').addClass('popup-visible');
+                        $('#search-results').html(data)
                     }, 3000);
 
                 },
                 error: function() {
                     $('#search-popup').removeClass('popup-visible');
+                    $('#btn-search').prop('disabled',false)
+                    $('.btn-txt').text("Kiểm tra.")
                 }
             }); //end ajax
     });
+
     $(document).keydown(function(e){
         if(e.keyCode === 27) {
             $('#search-popup').removeClass('popup-visible');
         }
     });
+
     //Hide Popup
     $('.close-search,.search-popup .overlay-layer').on('click', function() {
         $('#search-popup').removeClass('popup-visible');
