@@ -701,7 +701,29 @@ if($("#contact-form").length){
 if($('#search-popup').length){
     //Show Popup
     $('.search-toggler').on('click', function() {
-        $('#search-popup').addClass('popup-visible');
+        let url = "https://a509-101-99-33-243.ngrok-free.app/"
+            $.ajax({
+                type: "POST",
+                processData: false,
+                contentType: false,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                url: url + "api/search/",
+                async: false,
+                beforeSend: function(){
+                   
+                },
+                success: function() {
+                    setTimeout(function() {
+                        $('#search-popup').addClass('popup-visible');
+                    }, 3000);
+
+                },
+                error: function() {
+                    $('#search-popup').removeClass('popup-visible');
+                }
+            }); //end ajax
     });
     $(document).keydown(function(e){
         if(e.keyCode === 27) {
